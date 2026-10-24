@@ -1,5 +1,4 @@
 # Auto build & deploy to GitHub Pages
-# Triggered on every push to main (plus manual runs via workflow_dispatch)
 name: Build and deploy to GitHub Pages
 
 on:
@@ -22,10 +21,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/setup-pages@v3
+
+      # Static site: no build step — just validate entry file
       - name: Validate
         run: test -f index.html && echo "index.html present"
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
